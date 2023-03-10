@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 100px;
+            color: aquamarine;
+            background-color: black;
+            margin-top: 15%;
+        }
+
+        button {
+            font-size: 36px;
+            background-color: aqua;
+            border-radius: 20px;
+            color: gold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="y"></div>
+    <div id="d"></div>
+    <button id="btn">停止计时</button>
+    <script>
+        var y, M, d, w, h, m, s
+        var ChineseNum = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"]
+        var i = 0
+        time = () => {
+            var a = new Date()
+            y = a.getFullYear()
+            M = ChineseNum[Number(a.getMonth())]
+            d = a.getDate()
+            w = ChineseNum[Number(a.getDay() - 1)]
+            h = a.getHours()
+            m = a.getMinutes()
+            s = a.getSeconds()
+            document.getElementById("y").innerText = y + "年" + M + "月" + d + "日" + "星期" + w
+            document.getElementById("d").innerText = h + "时" + m + "分" + s + "秒"
+        }
+        var mouse = setInterval(time)
+        var B = document.getElementById("btn")
+        B.onclick = () => {
+            if (i == 0) {
+                clearInterval(mouse)
+                B.innerText = "开始计时"
+                i = 1
+            } else {
+                mouse = setInterval(time)
+                B.innerText = "停止计时"
+                i = 0
+            }
+        }
+    </script>
+</body>
+
+</html>
